@@ -1,0 +1,22 @@
+# Obsidian UI/cache state (per-machine, not content)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.trash/
+
+# Google Drive for Desktop sync staging
+.tmp.drivedownload/
+.tmp.driveupload/
+
+# Google Docs pointer files (not real content)
+*.gdoc
+*.gsheet
+*.gslides
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local-only overrides
+CLAUDE.local.md
