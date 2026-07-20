@@ -12,6 +12,8 @@ Currently in the **discovery phase** under a signed MoU. Positive discovery → 
 - **Started:** ~1 Jul 2026 (handover from Nakul Srinivas, Google)
 - **Matteo's role:** PM & meeting lead
 
+> **Update 2026-07-20 (cross-checked against Alex's vault):** MoU signed 14 Jul — consistent. illy farmer-intro contact is **Claudio Bianchi**; "Elie" is the Brazil-side partner qualifying farmers. **Brazil discovery stays with Agorai** (not delegated to xFarm) — a standing IP-ownership rule. Watch the **§6.3 IP** clause (the original board-critical lever).
+
 ## Key people
 - **Agorai:** Matteo Caligaris (PM/lead), Alex Presani, Sara Cremascoli (MoU / data / legal).
 - **xFarm:** Valeriya Karbanovich (taking over PM from Sami), Sami Yacoubi (Head of Program Delivery, handing off), **André Pessina** (Brazil — agronomist/IoT, local execution), Anilton Veiga, Andre Cantarelli, Camilla Comaschi, Svetlana Dzeviatava.

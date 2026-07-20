@@ -18,6 +18,13 @@ SHIELD is a **territorial digital twin for hydraulic & hydrogeological (flood) r
 - **Phase:** Pre-start / de-risking — pilot **not yet begun**. Higher structural risk than ARM.
 - **Matteo's role:** PM / portfolio — currently building the **SHIELD budget model** (`SHIELD_Budget_Model_v0_1`) and portfolio budget levers.
 
+> **⚠️ Update 2026-07-20 (from Alex's W30 prep — supersedes the June sources this file was built from):**
+> - **SHIELD is now the most active use case in Alex's inbox** — not "pre-start." Regione has been waiting; Maurizio called it "molto urgente" (4 Jul).
+> - **SISSA proposal superseded:** the June framing (~€15–20k, 4–5 months, 1 postdoc @50–60%/3mo) is replaced by a formal **SISSA proposal ~€94k for a 12-month post-doc** (arrived ~20 Jul, Prof. Rozza). Maurizio is asking where the **economic offer** is.
+> - **art. 19 IP incongruence** flagged by both Sara Cremascoli and Sara Levi Sacerdotti; Maurizio delegated the IP + open-questions answer to Alex.
+> - **De-facto driver: Sara Levi Sacerdotti (DS&AI Foundation ETS)** — not in the roster below. SISSA contacts: **Rozza, Dellapi**; **UniUD** now involved (Montanari, Policriti).
+> - **FVG kickoff scheduling** is live and **collides with the ARM kickoff (Fri 24 Jul, 15–16 CET)** — coverage decision needed (likely Matteo).
+
 ## Key people
 - **Regione FVG – Ambiente:** Massimo Canali (project owner), Massimo Zanetti (hydrology).
 - **ARPA FVG (OSMER):** Fulvio Stel (meteo modeling & data validation; developing runoff/afflussi-deflussi models).

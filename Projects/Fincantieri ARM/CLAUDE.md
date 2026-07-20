@@ -11,6 +11,13 @@ ARM is **Agorai's first Physical AI proof point and highest-conviction product b
 - **DGS contract:** signed; kickoff held. Shipyard visit done (Monfalcone, 16 Jul).
 - **Matteo's role:** PM, **day-to-day single point of contact for ARM**.
 
+> **⚠️ Update 2026-07-20 (from Alex's W30 weekly prep — reconciles against the mid-July report below):**
+> - **ARM reclassified to Research / moonshot** (16 Jul): no commercial version within ~5 years. Alex sent Maurizio a "Caso Fincantieri" expectation-reset letter (19 Jul) after the shipyard visit. **This supersedes the "MVP Jun 2027 / commercialisation 2028" framing for CdA purposes** — treat those as retired commercial dates, not plan-of-record. ⚠️ The business plan being built may still carry ARM revenue that's been privately retired — reconcile before the ~16 Sep CdA.
+> - **AI Architect hire is now an executive search** (head-hunter, under Generali HR): the previously-named candidate declined 13 Jul, so the "starts 1 Sep" assumption is void; the L3-capacity date is now uncertain.
+> - **Alessandra Chiuderi left** (contract ended 15 Jul) — was the data-governance / IP-coordination contact; ownership now open.
+> - **Kickoff Fri 24 Jul:** Agorai's docs to Dentesano still outstanding as of 14 Jul (DGS delivered theirs).
+> - **Live ops blockers (20 Jul):** `case-01→armfin-01` rename blocked; GitHub org permissions unclear (Nicolas lacks write access / unclear who administers the org); a DGS user needs a GCP group add — all "who owns the platform" questions.
+
 ## Governance & key people
 - **STO (full product authority): Alex Presani** — Head of Tech & R&D, Agorai. All architecture/IP/partner-scope decisions flow through him.
 - **CEO: Maurizio Cortese** — owns the Fincantieri executive relationship & commercial framing.
