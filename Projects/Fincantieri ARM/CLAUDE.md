@@ -1,47 +1,79 @@
-# Project: Fincantieri ARM (Robotics)
+# Project: Fincantieri ARM (Advanced Robots Mobility)
 
 ## Overview
-Agorai robotics use case for **Fincantieri** (shipyard automation), delivered with partner **DGS** and built on GCP by technical partner **ACT BI**. Internally referred to as the "ARM" project.
+ARM is **Agorai's first Physical AI proof point and highest-conviction product bet** — an autonomous navigation system for robots operating in dynamic, GPS-denied industrial environments, specifically the interior of **Fincantieri ship hulls under active construction**. Fincantieri is both **sponsor and first customer**.
+
+**The IP thesis:** DGS (Trieste robotics division) delivers the robotic stack; **Agorai owns the reasoning/AI layer (Layer 3) — the defensible, non-negotiable IP** (Knowledge Graph + agentic AI, auditable/deterministic at the decision boundary → the precondition for safety certification). The product is deliberately a **form-agnostic autonomy payload** (self-contained sensor+compute unit mountable on any robot), because Fincantieri runs ~20 heterogeneous robots and the payload is independently sellable to other industrial operators.
 
 ## Status
-- **Phase:** Active — kickoff Fri 2026-07-24
-- **Progress:** ~15% (environment setup underway, yard visit done)
-- **Started:** ~2026-07-02 (Matteo's first week)
-- **Target:** 2-month delivery plan (~end Sept 2026) — *confirm from plan doc*
+- **Phase:** POC / simulation — **18 May → 20 Sep 2026**
+- **Next phases:** MVP 21 Sep 2026 → 10 Jan 2027 (first supervised hull deployment) · MVP delivery to Fincantieri **~Jun 2027** · commercialisation 2028
+- **DGS contract:** signed; kickoff held. Shipyard visit done (Monfalcone, 16 Jul).
+- **Matteo's role:** PM, **day-to-day single point of contact for ARM**.
 
-## Goals
-Stand up a GCP environment and a robotics/vision use case for Fincantieri, with DGS as delivery partner. End deliverable to Fincantieri still to be pinned down (flagged as an open question in the plan doc).
+## Governance & key people
+- **STO (full product authority): Alex Presani** — Head of Tech & R&D, Agorai. All architecture/IP/partner-scope decisions flow through him.
+- **CEO: Maurizio Cortese** — owns the Fincantieri executive relationship & commercial framing.
+- **Fincantieri:** Carlo Dentesano (Head of Robotics, Digital Lab — technical sponsor & discovery counterpart), Michele Tornielli (innovation/sponsor channel), Giacomo Rodeghiero, Paolo Cerioli.
+- **DGS (robotic stack):** Francesco di Bianco (Robotic Stack lead), Fabrizio Bottarel, Ermanno Santin, Diego Marussi, Michele Balbi (leads DGS Trieste), Luca Scopelliti (cloud/DevOps, BID).
+- **ACT BI (GCP build):** Nicolas Bossi, Nikos, Murtaza.
+- **Google:** Maurizio Colleluori (Cloud PSO, infra track).
+- **Research:** IIT (Lorenzo Natale, Piero Gamarra, Claudio Semini), SISSA, Domyn (Pasquali — exploratory, edge reasoning; diagnose Fincantieri–Domyn friction before pitching).
 
-## Key People
-- **Agorai:** Matteo Caligaris (PM), Alex Presani (Head of Tech & R&D)
-- **Fincantieri:** Carlo Dentesano, Michele Tornielli, Giacomo Rodeghiero
-- **DGS:** Fabrizio Bottarel, Ermanno Santin, Francesco Di Bianco
-- **ACT BI (GCP build):** Nicolas Bossi, Nikos, Murtaza
+## The two POC research questions
+1. **Sensor/hardware:** minimum sensor + compute config, as a form-agnostic payload, for reliable semantic navigation in a hull?
+2. **Reasoning:** is a Knowledge-Graph semantic map the right L3 architecture (vs. the VLMaps baseline), and what ontology/data does it need?
 
-## Current Focus
-GCP setup: GPU VM provisioning and first commits to the infra repo. Preparing for the Jul 24 kickoff.
+A well-evidenced **negative result is a valid POC outcome.**
 
-## Key Decisions
-- **GPU VM:** `g2-standard-16` (Belgium region — nearest to Trieste with the needed VM types). Earlier "g4" reference was a typo. VM renamed `case-01` → `armfin-01`; new `3-armfin-dev` stage.
-- **Infra repo:** github.com/Agorai-TS/Agorai-GCP
-- **Docs/materials:** Fincantieri SharePoint folder (shared by Carlo) + a "2 Months Plan Proposal" Google Doc (2026-07-02).
+## Use cases (confirmed on July shipyard visit)
+- **UC1 — Autonomous on-board navigation** (core enabling capability): move in-ship, self-localize, ~1 m precision; geometric on approach → semantic near target. **No premapping** (ship changes daily; builds/updates its own map, "Waze"-style).
+- **UC2 — Work-progress monitoring** (the initial application Fincantieri wants): daily round detecting progress by area (ceiling grids, cable-tray density, insulation extent, paint status).
+- **UC3 — Tool/material transport** (~30 kg, future; depends on UC1).
+- **UC4 — Tank/void inspection** — *out of ARM scope* (separate Fincantieri project); possible future extension.
+
+Initial sim scope: upper decks, mid-ship, public areas & cabins, rough-construction phase. **Excluded:** engine room, decks 2–3.
+
+## Safety architecture (Fincantieri's buying criterion)
+Safety Arbiter (validates every AI proposal vs. KG constraints before any motor command) · Navigation Primitive API (AI acts only through a bounded, validated action set — no direct motor control) · hardware E-stop (physical relay) · FULL→DEGRADED→MINIMAL SAFE operating modes · **navigation only, the robot touches nothing.**
+
+## GCP / infrastructure build (actBI 2-month plan)
+Two people (Nicolas, Murtaza), ~2 months + optional month-3 buffer.
+- **Step 0 — Access & Roles:** GCP IAM, **L4 GPU quota** (long lead), GitHub admin, KMS/secret store, Tailscale admin, named DGS counterpart, agreed **RACI** (Agorai = Accountable on delivery; correct the pattern of the Google contact brokering/gating). **+ Define the end product delivered to Fincantieri** (gates env sizing, release targets).
+- **Milestone A — VPN & GCP validation:** validate Agorai GCP account; stand up **Tailscale** VPN.
+- **Milestone B — Isaac Sim dev env:** private Ubuntu 22.04 VM, NICE DCV, NVIDIA Isaac Sim; **g2-standard-16 (16 vCPU, 64 GB, 1× L4)**; Terraform/Digger; golden image; auto-stop-on-idle.
+- **Milestone C — CICD & release (DGS-facing, parallel):** GitHub + Artifact Registry, **Cosign** image signing (KMS-backed) with `cosign verify` gate, release process defined *with* DGS. Fincantieri verifies authenticity with the public key only.
+- **Repo:** github.com/Agorai-TS/Agorai-GCP · **VM naming:** `armfin-01`, `3-armfin-dev`.
+
+## Key decisions
+- DGS proposal chosen over Deloitte/IIT (platform-agnostic, offline-first, safer AI architecture, clean IP boundary).
+- Layer 3 = Agorai IP, non-negotiable; DGS is **Consulted, not Responsible** on L3.
+- Offline-first / edge-only (steel hull = Faraday cage).
+- **Sept POC runs on an off-the-shelf placeholder model, not Agorai L3** (AI Architect starts 1 Sep) — hold the date, cut scope, use placeholder to discover L3 requirements.
+- GPU: **g2-standard-16** (Belgium; earlier "g4" was a typo).
+- Vendor-agnostic cloud (start GCP, keep portable; Agorai owns Terraform, not Google).
 
 ## Next Actions
-- [ ] Attend progress call "Discussione progresso Robotica Fincantieri" — **today, Mon 2026-07-20 13:00**
-- [ ] Prep for **kickoff Fri 2026-07-24 15:00** (agenda, attendees, deliverable framing)
-- [ ] Define the **end product delivered to Fincantieri** (open question in the plan doc) — Supports: [[1. Yearly Goals]]
-- [ ] Resolve GPU VM firewall/rename follow-ups with Murtaza (`armfin-01`, `3-armfin-dev`)
-- [ ] Confirm first commits landed on `Agorai-GCP` repo (Nicolas)
-- [ ] Get remaining data/materials from Fincantieri (via SharePoint)
+- [ ] Attend **progress call "Discussione progresso Robotica Fincantieri" — today, Mon 2026-07-20, 19:00 Rome** (Google Meet; Matteo optional attendee)
+- [ ] Prep & deliver the **kickoff — Fri 2026-07-24, 15:00 Rome** (deck structure drafted: 13 slides; pre-wire asks with Carlo/Michele; pre-wire architecture Q&A split with Alex) — Supports: [[1. Yearly Goals]]
+- [ ] Push to **define the end product delivered to Fincantieri** (open in the actBI plan; blocks env sizing/release targets)
+- [ ] Drive the **Fincantieri data agreement** to signature (gates KG work on real shipyard data) — WS4 (Sara Cremascoli)
+- [ ] Resolve GPU VM firewall/rename follow-ups with Murtaza; confirm first commits on `Agorai-GCP` (Nicolas)
+- [ ] Get remaining Fincantieri materials (3D drawings/DWG/point clouds, BOM) via SharePoint — blocks the DGS sim-env start
+- [ ] Push Fincantieri to **structure its phase/work ontology** (doesn't exist yet; use the **BOM as the starting point**)
+- [ ] Run ≥1 **structured operator discovery session** (WS5) — the shipyard visit does *not* substitute for it
 
-## Blockers
-- ARM-Fincantieri GPU VM work flagged as blocked in Murtaza's 2026-07-20 note — *needs reading in full to confirm exact blocker.*
+## Blockers / top risks
+- **Ceding architecture to DGS** (most acute) — insert decisively on the next 1–2 architecture decisions; keep an open-decisions list for the incoming AI Architect.
+- **Hiring timeline** — AI Architect starts **1 Sep** (+2 Research Engineers ~Sep); all L3 capacity lands *on* the POC deadline, not before.
+- **Ontology critical path** — no Fincantieri phase ontology exists (UC2 depends on it).
+- **Timeline signal to verify** — informal "mid-2027 availability" comment at the visit; likely just restates the Jun-2027 MVP date — confirm who/what scope.
+- **Repeatability** — a one-off demo is easy; reliable repetition is the hard part (frame expectations accordingly).
 
 ## Resources
-- Infra repo: https://github.com/Agorai-TS/Agorai-GCP
-- "2 Months Plan Proposal — Agorai GCP setup / DGS Robotics Use Case" (Google Doc, 2026-07-02)
-- Fincantieri SharePoint (yard materials/videos)
-- Gemini notes: "Progetti di ricerca - Caso Fincantieri" (Jun 30), "ARM Weekly Standup" (Jun 30, Jul 15)
+- **Full project report** (comprehensive, regenerated 2026-07-17): Drive doc `ARM-Fincantieri-Project-Report.md` — the authoritative source; read it before major decisions.
+- 2-Month Plan Proposal (actBI, Nicolas) · ARM Kickoff Structure & speaker notes · ARM Casi d'uso (shipyard-visit notes) · ARM cost sheets (G2/G4, budget model) · Use Case Canvas / POC Research Protocol v0.3 (Drive).
+- Standing cadence: **ARM weekly standup ("Scrum of Scrums"), Tuesdays ~17:00 CEST.**
 
 ## Notes for Claude
-Source: reconstructed from Gmail (last 3 weeks) on 2026-07-20 — snippet-level, not full threads. Dates/decisions marked *confirm* need verification against the plan doc or full threads before relying on them.
+Enriched 2026-07-20 from Gmail + Drive docs (ARM project report, 2-month plan, kickoff structure, shipyard-visit notes). **Strictly confidential** — defence-adjacent context. Verify action items with Alex before acting. Data discrepancies (ARM name, "AI Architect" vs "System Architect", POC start 18 vs 25 May) are tracked in the full report §13.

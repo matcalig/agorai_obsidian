@@ -6,7 +6,8 @@
       "mcp__claude_ai_Google_Calendar__list_events",
       "mcp__claude_ai_Google_Drive__search_files",
       "Read(//c//**)",
-      "Read(//c/Users/matteo.caligaris_ago/Documents//**)"
+      "Read(//c/Users/matteo.caligaris_ago/Documents//**)",
+      "mcp__claude_ai_Google_Drive__read_file_content"
     ]
   }
 }
