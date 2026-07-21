@@ -7,7 +7,8 @@
       "mcp__claude_ai_Google_Drive__search_files",
       "Read(//c//**)",
       "Read(//c/Users/matteo.caligaris_ago/Documents//**)",
-      "mcp__claude_ai_Google_Drive__read_file_content"
+      "mcp__claude_ai_Google_Drive__read_file_content",
+      "Skill(schedule)"
     ]
   }
 }

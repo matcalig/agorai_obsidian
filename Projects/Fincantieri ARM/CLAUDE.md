@@ -18,6 +18,14 @@ ARM is **Agorai's first Physical AI proof point and highest-conviction product b
 > - **Kickoff Fri 24 Jul:** Agorai's docs to Dentesano still outstanding as of 14 Jul (DGS delivered theirs).
 > - **Live ops blockers (20 Jul):** `case-01→armfin-01` rename blocked; GitHub org permissions unclear (Nicolas lacks write access / unclear who administers the org); a DGS user needs a GCP group add — all "who owns the platform" questions.
 
+> **📞 From the 2026-07-20 progress call (Balbi/Maurizio/Di Bianco/Ermanno/Alex/Matteo) + Alex 1:1 — updates project understanding:**
+> - **MVP scope is narrower than a "hull-navigation product."** Fincantieri's actual MVP ask = **autonomous navigation in a disconnected environment via natural-language commands**, on an **explicitly bounded perimeter** (a chosen deck type / construction phase). *What* the robot does there (the application) is deferred to later projects. Vertical stairs and tight passages are out of scope by physics.
+> - **Commercialization by end-2027 is contested, not settled:** Alex *excludes* it (a narrow-condition robot is a demo, not a product); Francesco/DGS *won't rule out* a limited **Release 1** pending the January simulation + real investment/industrialisation; Maurizio flagged there's no clear commercialization date at all. Reconciles with the Research/moonshot reclassification — treat a 2027 commercial product as *not* plan-of-record.
+> - **UC2 (work-progress monitoring) may not need a robot.** Alex's point: **GoPro helmet-cams + computer vision** could deliver the same progress data passively across all decks — cheaper and broader than a mobile robot. Worth weighing before over-investing UC2 in the robot.
+> - **The January simulation is the gating fact** — everything scoped now is provisional on it.
+> - **Stakeholder reality:** Fincantieri's asks are partly driven by **IPCEI funding justification** and a **labour shortage**, not pure efficiency. All comms route through **Carlo / Giacomo** — no direct end-user access. Separate their *generic* goals (safety, headcount) from *specific* robot use-case goals before committing to milestones.
+> - **Immediate move (agreed):** get **formal written minimum requirements** from Fincantieri and hold a **pre-kickoff alignment meeting before Fri 24 Jul** (via Giacomo), so the kickoff with Tornielli isn't the first requirements conversation.
+
 ## Governance & key people
 - **STO (full product authority): Alex Presani** — Head of Tech & R&D, Agorai. All architecture/IP/partner-scope decisions flow through him.
 - **CEO: Maurizio Cortese** — owns the Fincantieri executive relationship & commercial framing.
@@ -61,7 +69,10 @@ Two people (Nicolas, Murtaza), ~2 months + optional month-3 buffer.
 - Vendor-agnostic cloud (start GCP, keep portable; Agorai owns Terraform, not Google).
 
 ## Next Actions
-- [ ] Attend **progress call "Discussione progresso Robotica Fincantieri" — today, Mon 2026-07-20, 19:00 Rome** (Google Meet; Matteo optional attendee)
+- [x] Progress call "Discussione progresso Robotica Fincantieri" — 2026-07-20 ✓
+- [ ] **Get formal written minimum requirements from Fincantieri** + hold a **pre-kickoff alignment meeting before Fri 24 Jul** (via Giacomo) — Alex & Francesco lead; Matteo & Alex make contact
+- [ ] Prep **questions for Michele Tornielli** → send to Alex for review
+- [ ] Review the **DGS contract** — Phase 1 vs Phase 2; get the final version from Sara
 - [ ] Prep & deliver the **kickoff — Fri 2026-07-24, 15:00 Rome** (deck structure drafted: 13 slides; pre-wire asks with Carlo/Michele; pre-wire architecture Q&A split with Alex) — Supports: [[1. Yearly Goals]]
 - [ ] Push to **define the end product delivered to Fincantieri** (open in the actBI plan; blocks env sizing/release targets)
 - [ ] Drive the **Fincantieri data agreement** to signature (gates KG work on real shipyard data) — WS4 (Sara Cremascoli)
